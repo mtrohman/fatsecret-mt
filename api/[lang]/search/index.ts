@@ -63,15 +63,19 @@ export default async (
     const normalizeText = element
       .find("div.smallText.greyText.greyLink")
       .text()
+      .replace(/(\t, )/gm, "|")
       .replace(/(\r\n|\n|\r\t|\t|\r)/gm, "");
-
+    // console.log(normalizeText);
     const splitSection = normalizeText.split(langConfig.otherSizes);
-    const splitGeneralInfoString = splitSection[0].split("-");
+    const splitGeneralInfoString = splitSection[0].split(" - ");
     const generalInfo = splitGeneralInfoString[1].split("|");
 
     const calories =
-      +generalInfo[0].replace(langConfig.measurementRegex.calories, "") || 0;
+      +generalInfo[0]
+      .replace(langConfig.measurementRegex.calories, "") || 0;
 
+    // console.log(splitGeneralInfoString);
+    
     const fat =
       +generalInfo[1]
         .replace(langConfig.measurementRegex.fat, "")
@@ -88,9 +92,9 @@ export default async (
         .replace(",", ".") || 0;
 
     // Search other serving method
-    const otherServing: ServingList[] = [];
+    /*const otherServing: ServingList[] = [];
     if (splitSection[1]) {
-      const val = splitSection[1].split(",");
+      const val = splitSection[1].split("|");
       val.pop();
 
       val.forEach((vl) => {
@@ -102,7 +106,7 @@ export default async (
             : 0,
         });
       });
-    }
+    }*/
 
     items.push({
       title: linkText,
@@ -110,7 +114,7 @@ export default async (
       fat,
       carbo,
       calories,
-      otherServing,
+      // otherServing,
       serving: splitGeneralInfoString[0],
       detailLink: `${proto}://${url}/api/${
         langConfig.lang
@@ -125,7 +129,7 @@ export default async (
   const next = endOfPage ? 0 : parseInt(page) + 1;
   const prev = startOfPage ? 0 : parseInt(page) - 1;
   const data: DataResponse = {
-    notes: "The measurement used for protein, fat, carbo, are in g(gram)",
+    // notes: "The measurement used for protein, fat, carbo, are in default serving",
     items,
     total,
     prev,

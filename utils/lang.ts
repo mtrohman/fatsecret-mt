@@ -10,7 +10,19 @@ interface LanguageConfig {
     protein: RegExp,
     fat: RegExp,
     calories: RegExp
-  }
+  },
+  detailRegex?: {
+    carb: RegExp;
+    kcal: RegExp;
+    kj: RegExp;
+    fat: RegExp;
+    protein: RegExp;
+    saturated_fat: RegExp;
+    colestrol: RegExp;
+    sugar: RegExp;
+    fiber: RegExp;
+    sodyum: RegExp;
+  };
 }
 
 export const languanges: LanguageConfig[] = [
@@ -40,7 +52,19 @@ export const languanges: LanguageConfig[] = [
       protein: /Prot:|g/g,
       fat: /Lemak:|g/g,
       calories: /Kalori:|kkal/g
-    }
+    },
+    detailRegex: {
+      carb: /Karbohidrat|g/g,
+      protein: /Protein|g/g,
+      fat: /Lemak|g/g,
+      kkal: /kkal/g,
+      kj: /Energi|kj/g,
+      saturated_fat: /Lemak Jenuh|g/g,
+      colestrol: /Kolesterol|mg/g,
+      sugar: /Gula|g/g,
+      fiber: /Serat|g/g,
+      sodium: /Sodium|mg/g,
+    },
   }
 ]
 
