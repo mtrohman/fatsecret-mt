@@ -54,7 +54,7 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
 
   const $ = cheerio.load(html);
   
-  let serving_size: FoundList[] = [];
+  let serving_size: ServingSize[] = [];
   // let i=0;
   // let items: any = {};
   let name: string, portion: string;

@@ -13,7 +13,7 @@ interface LanguageConfig {
   },
   detailRegex?: {
     carb: RegExp;
-    kcal: RegExp;
+    kkal: RegExp;
     kj: RegExp;
     fat: RegExp;
     protein: RegExp;
